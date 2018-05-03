@@ -78,4 +78,18 @@ class UserTest < ActiveSupport::TestCase
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
   end
+
+  test "学籍番号は数字でなけらばならない" do
+    @user.student_number = "aaaaaaaaa"
+    assert_not @user.valid?
+  end
+  test "学籍番号は型があっていなければならない" do
+    @user.student_number = "110011111"
+    assert_not @user.valid?
+  end
+
+  test "電話番号は型があっていなければならない" do
+    @user.phone = "080123456780"
+    assert_not @user.valid?
+  end
 end
