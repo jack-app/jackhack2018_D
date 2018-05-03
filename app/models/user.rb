@@ -14,5 +14,10 @@ class User < ApplicationRecord
   validates :password,
             presence: true,
             length: {minimum: 6}
+  validates :student_number,
+            presence: true,
+            format: {with: /\A([0-9]|10)1[0-8][0-9]{5}\z/i}
+  validates :phone,
+            format: {with: /\A(080|090)[0-9]{8}\z/i}
   has_secure_password
 end
