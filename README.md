@@ -1,1 +1,2 @@
-# jackHack12018Dチーム
+﻿# jackHack12018Dチーム
+石川和樹
