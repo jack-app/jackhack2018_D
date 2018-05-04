@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:show, :edit]
 
   # GET /users
   # GET /users.json
@@ -35,8 +35,8 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+    if current_user.update(user_params)
+      redirect_to current_user, notice: 'User was successfully updated.'
     else
       render :edit
     end
@@ -50,10 +50,6 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
