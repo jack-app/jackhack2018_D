@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   before_save {self.email.downcase!}
+  validates :display_name,
+            presence: true,
+            length: {maximum: 25}
   validates :family_name,
             presence: true,
             length: {maximum: 25}
@@ -13,7 +16,8 @@ class User < ApplicationRecord
             uniqueness: {case_sensitive: false}
   validates :password,
             presence: true,
-            length: {minimum: 6}
+            length: {minimum: 6},
+            allow_nil: true
   validates :student_number,
             presence: true,
             format: {with: /\A(0[0-9]|10)1[0-8][0-9]{5}\z/i}
