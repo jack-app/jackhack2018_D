@@ -112,11 +112,19 @@
 
 <script type="text/javascript">
     $(document).on('turbolinks:load', function(){
+        all_available_tags = [];
+        if(gon.available_tags) all_available_tags = gon.available_tags;
         $('#favo-tags').tagit(
             {
                 singleField: true,
-                fieldName: 'user[tag_list]'
+                fieldName: 'user[tag_list]',
+                availableTags: all_available_tags
             }
         );
+        if(gon.tag_list){
+            for(var i=0;i<gon.tag_list.length;i++){
+                $('#favo-tags').tagit('createTag', gon.tag_list[i]["name"]);
+            }
+        }
     });
 </script>

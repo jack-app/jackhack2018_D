@@ -21,6 +21,9 @@
     <p><%= link_to circle.name, circle %></p>
 <% end %>
 <p>興味のあること</p>
+<% current_user.tags.each do |tag| %>
+    <p><%= tag.name %></p>
+<% end %>
 
 <%= link_to 'logout', logout_path, method: :delete %>
 
