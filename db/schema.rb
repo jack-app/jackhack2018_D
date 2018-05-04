@@ -10,13 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180504072705) do
+ActiveRecord::Schema.define(version: 20180504183026) do
 
   create_table "circles", force: :cascade do |t|
     t.string "name"
     t.text "profile"
     t.boolean "intercollege"
     t.integer "cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -37,6 +44,13 @@ ActiveRecord::Schema.define(version: 20180504072705) do
     t.integer "user_id"
     t.integer "circle_id"
     t.integer "permission", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users_tags", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

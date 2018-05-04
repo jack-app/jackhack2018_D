@@ -20,6 +20,7 @@
 <% current_user.circles.each do |circle| %>
     <p><%= link_to circle.name, circle %></p>
 <% end %>
+<p>興味のあること</p>
 
 <%= link_to 'logout', logout_path, method: :delete %>
 

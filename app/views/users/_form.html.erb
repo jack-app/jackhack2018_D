@@ -70,6 +70,17 @@
       </tr>
       <tr>
         <th align="right" valign="middle" style="width:12.5%;background:#74DF00;color: #ffffff;">
+          興味があること
+        </th>
+        <td align="left" valign=",odd;e" colspan="2">
+          <ul id="favo-tags" class="form-control"></ul>
+        </td>
+        <td align="left" valign="middle">
+          単語で1つ以上
+        </td>
+      </tr>
+      <tr>
+        <th align="right" valign="middle" style="width:12.5%;background:#74DF00;color: #ffffff;">
           パスワード
         </th>
         <td align="left" valign=",odd;e" colspan="2">
@@ -98,3 +109,14 @@
     </div>
 
 <% end %>
+
+<script type="text/javascript">
+    $(document).on('turbolinks:load', function(){
+        $('#favo-tags').tagit(
+            {
+                singleField: true,
+                fieldName: 'user[tag_list]'
+            }
+        );
+    });
+</script>
