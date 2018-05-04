@@ -1,29 +1,22 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Family name:</strong>
-  <%= @user.family_name %>
-</p>
-
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+<h1>Hello, <%= current_user.display_name %>!</h1>
 
 <p>
   <strong>Email:</strong>
-  <%= @user.email %>
+  <%= current_user.email %>
 </p>
 
 <p>
   <strong>Student number:</strong>
-  <%= @user.student_number %>
+  <%= current_user.student_number %>
 </p>
 
 <p>
   <strong>Phone:</strong>
-  <%= @user.phone %>
+  <%= current_user.phone %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'logout', logout_path, method: :delete %>
+
+<%= link_to 'Edit', account_setting_path %> |
+<%= link_to 'Back', root_path %>

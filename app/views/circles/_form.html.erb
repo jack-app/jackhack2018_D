@@ -1,0 +1,37 @@
+<%= form_with(model: circle, local: true) do |form| %>
+  <% if circle.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(circle.errors.count, "error") %> prohibited this circle from being saved:</h2>
+
+      <ul>
+      <% circle.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :circle_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :profile %>
+    <%= form.text_area :profile, id: :circle_profile %>
+  </div>
+
+  <div class="field">
+    <%= form.label :intercollege %>
+    <%= form.check_box :intercollege, id: :circle_intercollege %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cost %>
+    <%= form.number_field :cost, id: :circle_cost %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
