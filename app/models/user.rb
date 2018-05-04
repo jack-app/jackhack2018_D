@@ -24,4 +24,5 @@ class User < ApplicationRecord
   validates :phone,
             format: {with: /\A(080|090)[0-9]{8}\z/i}
   has_secure_password
+  has_many :circles, through: :users_circles
 end

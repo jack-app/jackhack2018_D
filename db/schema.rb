@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180504061125) do
+ActiveRecord::Schema.define(version: 20180504072705) do
 
   create_table "circles", force: :cascade do |t|
     t.string "name"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(version: 20180504061125) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "display_name"
+  end
+
+  create_table "users_circles", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "circle_id"
+    t.integer "permission", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
