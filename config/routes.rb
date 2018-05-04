@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :circles
   root 'static_pages#index'
 
   get 'signup', to: 'users#new'
