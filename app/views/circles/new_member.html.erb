@@ -1,0 +1,15 @@
+<div class="container" style="padding: 80px 0;">
+  <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
+  <%= form_for(:new_member, url:create_member_path) do |f| %>
+    <div style="padding: 50px; margin-bottom: 40px; border: 1px solid #333333; box-shadow: 4px 4px 8px #dddddd;">
+      <h1><%= @circle.name %>へ追加</h1>
+      <div class="form-group">
+        <%= f.label "Eメールアドレス" %>
+        <%= f.email_field :email, class:"form-control", placeholder:"Eメールアドレス" %>
+      </div>
+      <%= f.submit "招待する" %>
+    </div>
+  <% end %>
+</div>

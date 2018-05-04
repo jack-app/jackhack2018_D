@@ -20,5 +20,30 @@
   <%= @circle.cost %>
 </p>
 
+<p>
+  <strong>Member:</strong>
+  <%= @circle.users.count %>
+</p>
+
+<p>
+  <strong>メンバー一覧</strong>
+  <table>
+    <tr>
+      <td>表示名</td>
+      <td>氏名</td>
+      <td>メールアドレス</td>
+    </tr>
+    <% @circle.users.each do |user| %>
+        <tr>
+          <td><%= user.display_name %></td>
+          <td><%= user.family_name %> <%= user.first_name %></td>
+          <td><%= user.email %></td>
+        </tr>
+    <% end %>
+</table>
+</p>
+
+<p><%= link_to 'invite', new_member_path(@circle) %></p>
+
 <%= link_to 'Edit', edit_circle_path(@circle) %> |
 <%= link_to 'Back', circles_path %>

@@ -1,5 +1,5 @@
 class CirclesController < ApplicationController
-  before_action :set_circle, only: [:show, :edit, :update, :destroy]
+  before_action :set_circle, only: [:show, :edit, :update, :destroy, :new_member, :create_member]
 
   # GET /circles
   # GET /circles.json
@@ -26,7 +26,12 @@ class CirclesController < ApplicationController
   def create
     @circle = Circle.new(circle_params)
     if @circle.save
-      redirect_to @circle, notice: 'Circle was successfully created.'
+      @user_circle = UsersCircle.new(user_id: current_user.id, circle_id: @circle.id)
+      if @user_circle.save
+        redirect_to @circle, notice: 'Circle was successfully created.'
+      else
+        render :new
+      end
     else
       render :new
     end
@@ -39,6 +44,19 @@ class CirclesController < ApplicationController
       redirect_to @circle, notice: 'Circle was successfully updated.'
     else
       render :edit
+    end
+  end
+
+  def new_member
+  end
+
+  def create_member
+    @user_circle = UsersCircle.new(user_id: User.find_by(email: params[:new_member][:email]).id, circle_id: @circle.id)
+    if @user_circle.save
+      redirect_to @circle, notice: 'Circle was successfully created.'
+    else
+      flash.now[:danger] = "そのメールアドレスは間違っています"
+      render :new_member
     end
   end
 

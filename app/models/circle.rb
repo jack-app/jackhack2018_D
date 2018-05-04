@@ -6,5 +6,6 @@ class Circle < ApplicationRecord
             presence: true
   validates :cost,
             presence: true
+  has_many :users_circles, dependent: :destroy
   has_many :users, through: :users_circles
 end

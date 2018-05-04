@@ -16,6 +16,11 @@
   <%= current_user.phone %>
 </p>
 
+<p>サークル一覧</p>
+<% current_user.circles.each do |circle| %>
+    <p><%= link_to circle.name, circle %></p>
+<% end %>
+
 <%= link_to 'logout', logout_path, method: :delete %>
 
 <%= link_to 'Edit', account_setting_path %> |
