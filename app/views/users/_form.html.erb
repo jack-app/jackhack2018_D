@@ -9,48 +9,92 @@
       </ul>
     </div>
   <% end %>
+    <table class="table tables-bordered table-striped">
+      <tr>
+        <th align="right" valign="middle" style="width:20%;background:#74DF00;color: #ffffff;">
+          表示名
+        </th>
+        <td align="left" valign="middle" colspan="2">
+          <%= form.text_field :display_name, id: :user_display_name, class: "form-control" %>
+        </td>
+        <td align="left" valign="middle">
+          【例】Taro
+        </td>
+      </tr>
+      <tr>
+        <th align="right" valign="middle" style="width:20%;background:#74DF00;color: #ffffff;">
+          名前
+        </th>
+        <td align="left" valign="middle">
+          <%= form.text_field :family_name, id: :user_family_name, class: "form-control", placeholder:"姓" %>
+        </td>
+        <td align="left" valign="middle">
+          <%= form.text_field :first_name, id: :user_first_name, class: "form-control", placeholder:"名" %>
+        </td>
+        <td align="left" valign="middle">
+          【例】山田　大郎
+        </td>
+      </tr>
+      <tr>
+        <th align="right" valign="middle" style="width:12.5%;background:#74DF00;color: #ffffff;">
+          Eメール
+        </th>
+        <td align="left" valign="middle" colspan="2">
+          <%= form.text_field :email, id: :user_email, class: "form-control" %>
+        </td>
+        <td align="left" valign="middle">
+          【例】yamada_taro@example.com
+        </td>
+      </tr>
+      <tr>
+        <th align="right" valign="middle" style="width:12.5%;background:#74DF00;color: #ffffff;">
+          学籍番号
+        </th>
+        <td align="left" valign=",odd;e" colspan="2">
+          <%= form.text_field :student_number, id: :user_student_number, class: "form-control" %>
+        </td>
+        <td align="left" valign="middle">
+          【例】123456789
+        </td>
+      </tr>
+      <tr>
+        <th align="right" valign="middle" style="width:12.5%;background:#74DF00;color: #ffffff;">
+          電話番号（任意）
+        </th>
+        <td align="left" valign=",odd;e" colspan="2">
+          <%= form.text_field :phone, id: :user_phone, class: "form-control" %>
+        </td>
+        <td align="left" valign="middle">
+          【例】08012345678
+        </td>
+      </tr>
+      <tr>
+        <th align="right" valign="middle" style="width:12.5%;background:#74DF00;color: #ffffff;">
+          パスワード
+        </th>
+        <td align="left" valign=",odd;e" colspan="2">
+          <%= form.password_field :password, id: :user_password, class: "form-control" %>
+        </td>
+        <td align="left" valign="middle">
+          半角数字6文字以上
+        </td>
+      </tr>
+      <tr>
+        <th align="right" valign="middle" style="width:12.5%;background:#74DF00;color: #ffffff;">
+          パスワード確認
+        </th>
+        <td align="left" valign=",odd;e" colspan="2">
+          <%= form.password_field :password_confirmation, id: :user_password_confirmation, class: "form-control" %>
+        </td>
+        <td align="left" valign="middle">
+          上に同じ
+        </td>
+      </tr>
+    </table>
 
-  <div class="field">
-    <%= form.label :display_name %>
-    <%= form.text_field :display_name, id: :user_display_name %>
-  </div>
+    <br></br>
+    <div style="text-align:center;">
+      <%= form.submit "OK",class:"btn btn-primary" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :family_name %>
-    <%= form.text_field :family_name, id: :user_family_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name, id: :user_first_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, id: :user_email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :student_number %>
-    <%= form.text_field :student_number, id: :user_student_number %>
-  </div>
-
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone, id: :user_phone %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password, id: :user_password %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation, id: :user_password_confirmation %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

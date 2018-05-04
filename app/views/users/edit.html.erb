@@ -1,6 +1,8 @@
-<h1>Editing User</h1>
+<div class="container" style="padding: 80px 0;">
+  <h1>プロフィール編集</h1>
+  <hr color="49b77c">
+  <%= render 'form', user: current_user %>
 
-<%= render 'form', user: current_user %>
-
-<%= link_to 'Show', current_user %> |
-<%= link_to 'Back', account_path %>
+  <%= link_to 'Show', current_user %> |
+  <%= link_to 'Back', account_path %>
+</div>
