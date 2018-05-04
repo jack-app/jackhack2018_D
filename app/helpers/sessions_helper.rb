@@ -16,6 +16,6 @@ module SessionsHelper
     redirect_to login_url unless logged_in?
   end
   def unless_login
-    redirect_to user_path if logged_in?
+    redirect_to account_path if logged_in?
   end
 end
