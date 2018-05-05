@@ -11,6 +11,18 @@
   </head>
 
   <body>
+
+    <div style="position:fixed;top:0;left:0;width:100%;height:100px;background-color:#49b77c;color:white;opacity: 0.9;z-index:10000;">
+      <%= image_tag "logo.png", height: "100px", width: "100px" %>
+      <h1 style="position:absolute;bottom:0px;left:100px;font-size: 2vw;"><a href="/" style="color:#ffffff;background-color:#49b77c;">名古屋大学サークルinformation</a></h1>
+      <div style="position:absolute;bottom:10px;right:10px;font-size:1.5vw;">
+        <a href="/account" style="color:#ffffff;background-color:#49b77c;">マイアカウント</a>
+        <a href="/circles" style="color:#ffffff;background-color:#49b77c;">サークル一覧</a>
+        <a href="/circles/new" style="color:#ffffff;background-color:#49b77c;">サークル登録</a>
+        <%= link_to "ログアウト", logout_path, method: :delete %>
+      </div>
+    </div>
+    <div style="height:100px"></div>
     <%= yield %>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

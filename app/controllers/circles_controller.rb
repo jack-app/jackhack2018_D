@@ -10,6 +10,7 @@ class CirclesController < ApplicationController
   # GET /circles/1
   # GET /circles/1.json
   def show
+    gon.image_path = @circle.id
   end
 
   # GET /circles/new
