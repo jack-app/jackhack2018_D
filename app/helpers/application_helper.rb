@@ -3,10 +3,11 @@ module ApplicationHelper
     gon.available_tags = Tag.all.pluck(:name)
   end
   def circle_list
-    code = ""
+    code = "<div class='row'>"
     Circle.all.each do |circle|
       code += circle_view(circle)
     end
+    code += "</div>"
     code
   end
   private
