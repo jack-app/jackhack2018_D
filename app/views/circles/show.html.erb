@@ -3,76 +3,85 @@
   var ncmb = new NCMB("40eba54f0b6c3280251ab4d2ce4d888bf0c94ea220670ed380deaa4cd3084951", "601aeb8e880348637550fc71c25ca602a7acd430e8bc7192fdfe1361df591ccd");
 
   var onFormSend = function(){
-      var fileName = "aaa.gif";
+      var fileName = gon.image_path+".jpg";
       var fileData = document.getElementById("file-data").files[0];
 
       ncmb.File.upload(fileName, fileData)
           .then(function(res){
               alert("アップロード完了！");
-              document.getElementById("circle-image").innerHTML = "<img src='https://mb.api.cloud.nifty.com/2013-09-01/applications/6aJWFXEYlhr6utde/publicFiles/aaa.gif' style='width:100%'>";
+              document.getElementById("circle-image").innerHTML = "<img src='https://mb.api.cloud.nifty.com/2013-09-01/applications/6aJWFXEYlhr6utde/publicFiles/"+gon.image_path+".jpg' style='width:100%'>";
           })
           .catch(function(err){
               alert("アップロードに失敗しました");
           });
   }
-
   //-->
 </script>
 
 <div class="container-fluid">
   <div class="row">
+    <div class="col-6">
+      <p id="notice"><%= notice %></p>
+      <div style="font-size:3em"><%= @circle.name %></div>
+      <table class="table tables-bordered table-striped">
+        <tr>
+          <th align="right" valign="middle" style="width:20%;background:#74DF00;color: #ffffff;">
+            PR
+          </th>
+          <td align="left" valign="middle">
+            <%= @circle.profile %>
+          </td>
+        </tr>
+        <tr>
+          <th align="right" valign="middle" style="width:20%;background:#74DF00;color: #ffffff;">
+            インカレ
+          </th>
+          <td align="left" valign="middle">
+            <%= @circle.intercollege ? "インカレです": "名大限定です" %>
+          </td>
+        </tr>
+        <tr>
+          <th align="right" valign="middle" style="width:20%;background:#74DF00;color: #ffffff;">
+            年会費用
+          </th>
+          <td align="left" valign="middle">
+            <%= @circle.cost %>円
+          </td>
+        </tr>
+        <tr>
+          <th align="right" valign="middle" style="width:20%;background:#74DF00;color: #ffffff;">
+            人数
+          </th>
+          <td align="left" valign="middle">
+            <%= @circle.users.count %>人
+          </td>
+        </tr>
+        <tr>
+          <th align="right" valign="middle" style="width:20%;background:#74DF00;color: #ffffff;">
+            メンバー一覧
+          </th>
+          <td align="left" valign="middle">
+            <% @circle.users.each do |user| %>
+              <%= user.display_name %>(<%= user.email %>)
+          <% end %>
+          </td>
+
+        </tr>
+      </table>
+    </div>
+    <div class="col-6">
+      <div id="circle-image">
+        <img src='https://mb.api.cloud.nifty.com/2013-09-01/applications/6aJWFXEYlhr6utde/publicFiles/<%= @circle.id %>.jpg' style='width:100%'>
+      </div>
+      <input type="file" id="file-data"/><input type="button" class="btn btn-primary" value="画像をアップロード" onclick="onFormSend()">
+    </div>
+  </div>
+  <div class="row">
     <div class="col-12">
-      <div id="circle-image"></div>
-      <input type="file" id="file-data"/>
-      <input type="button" class="btn btn-primary" value="画像をアップロード" onclick="onFormSend()">
+      <p><%= link_to 'サークルにメンバーを追加する', new_member_path(@circle), class: "btn btn-info", style: "color:#ffffff" %></p>
+
+      <%= link_to 'Edit', edit_circle_path(@circle) %> |
+      <%= link_to 'Back', circles_path %>
     </div>
   </div>
 </div>
-<p id="notice"><%= notice %></p>
-<p>
-  <strong>Name:</strong>
-  <%= @circle.name %>
-</p>
-
-<p>
-  <strong>Profile:</strong>
-  <%= @circle.profile %>
-</p>
-
-<p>
-  <strong>Intercollege:</strong>
-  <%= @circle.intercollege %>
-</p>
-
-<p>
-  <strong>Cost:</strong>
-  <%= @circle.cost %>
-</p>
-
-<p>
-  <strong>Member:</strong>
-  <%= @circle.users.count %>
-</p>
-
-<p>
-  <strong>メンバー一覧</strong>
-  <table>
-    <tr>
-      <td>表示名</td>
-      <td>氏名</td>
-      <td>メールアドレス</td>
-    </tr>
-    <% @circle.users.each do |user| %>
-        <tr>
-          <td><%= user.display_name %></td>
-          <td><%= user.family_name %> <%= user.first_name %></td>
-          <td><%= user.email %></td>
-        </tr>
-    <% end %>
-</table>
-</p>
-
-<p><%= link_to 'invite', new_member_path(@circle) %></p>
-
-<%= link_to 'Edit', edit_circle_path(@circle) %> |
-<%= link_to 'Back', circles_path %>
