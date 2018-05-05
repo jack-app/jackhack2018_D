@@ -1,0 +1,17 @@
+/*
+*= require_tree .
+*= require jquery.tagit
+*= require tagit.ui-zendesk
+*= require_self
+*/
+
+@font-face {
+  font-family: '03SmartFontUI';
+  src: font-url('03SmartFontUI.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+  font-family: '03SmartFontUI';
+}

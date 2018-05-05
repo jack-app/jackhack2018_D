@@ -1,5 +1,6 @@
 class CirclesController < ApplicationController
   before_action :set_circle, only: [:show, :edit, :update, :destroy, :new_member, :create_member]
+  before_action :require_login
 
   # GET /circles
   # GET /circles.json
