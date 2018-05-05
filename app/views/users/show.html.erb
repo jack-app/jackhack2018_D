@@ -1,31 +1,75 @@
-<p id="notice"><%= notice %></p>
-<h1>Hello, <%= current_user.display_name %>!</h1>
-
-<p>
-  <strong>Email:</strong>
-  <%= current_user.email %>
-</p>
-
-<p>
-  <strong>Student number:</strong>
-  <%= current_user.student_number %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= current_user.phone %>
-</p>
-
-<p>サークル一覧</p>
-<% current_user.circles.each do |circle| %>
-    <p><%= link_to circle.name, circle %></p>
-<% end %>
-<p>興味のあること</p>
-<% current_user.tags.each do |tag| %>
-    <p><%= tag.name %></p>
-<% end %>
-
-<%= link_to 'logout', logout_path, method: :delete %>
-
-<%= link_to 'Edit', account_setting_path %> |
-<%= link_to 'Back', root_path %>
+<div class="container" style="padding: 80px 0;">
+  <h1>アカウント</h1>
+  <hr color="49b77c">
+  <table class="table tables-bordered table-striped">
+    <tr>
+      <th align="right" valign="middle" style="width:20%;background:#74DF00;color: #ffffff;">
+        表示名
+      </th>
+      <td align="left" valign="middle">
+        <%= current_user.display_name %>
+      </td>
+    </tr>
+    <tr>
+      <th align="right" valign="middle" style="width:20%;background:#74DF00;color: #ffffff;">
+        名前
+      </th>
+      <td align="left" valign="middle">
+        <%= current_user.family_name %> <%= current_user.first_name %>
+      </td>
+    </tr>
+    <tr>
+      <th align="right" valign="middle" style="width:12.5%;background:#74DF00;color: #ffffff;">
+        Eメール
+      </th>
+      <td align="left" valign="middle">
+        <%= current_user.email %>
+      </td>
+    </tr>
+    <tr>
+      <th align="right" valign="middle" style="width:12.5%;background:#74DF00;color: #ffffff;">
+        学籍番号
+      </th>
+      <td align="left" valign="middle">
+        <%= current_user.student_number %>
+      </td>
+    </tr>
+    <tr>
+      <th align="right" valign="middle" style="width:12.5%;background:#74DF00;color: #ffffff;">
+        電話番号（任意）
+      </th>
+      <td align="left" valign="middle">
+        <%= current_user.phone %>
+      </td>
+    </tr>
+    <tr>
+      <th align="right" valign="middle" style="width:12.5%;background:#74DF00;color: #ffffff;">
+        所属サークル
+      </th>
+      <td align="left" valign="middle">
+        <% current_user.circles.each do |circle| %>
+            <p><%= link_to circle.name, circle %></p>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th align="right" valign="middle" style="width:12.5%;background:#74DF00;color: #ffffff;">
+        興味があること
+      </th>
+      <td align="left" valign="middle">
+        <% current_user.tags.each do |tag| %>
+            <%= tag.name %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+  <p>
+    <%= link_to '編集', account_setting_path, class:"btn btn-primary", style:"color:#ffffff;width:100%;" %>
+  </p>
+  <p>
+    <%= link_to 'ログアウト', logout_path, method: :delete, class:"btn btn-danger", style:"color:#ffffff" %>
+  </p>
+  <p>
+    <%= link_to 'トップにもどる', root_path, class:"btn btn-primary", style:"color:#ffffff" %>
+  </p>
+</div>

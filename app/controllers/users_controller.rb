@@ -62,7 +62,7 @@ class UsersController < ApplicationController
       params[:user][:tag_list].split(",").each do |name|
         tag = Tag.find_by(name: name)
         tag = Tag.create(name: name) unless tag
-        UsersTag.create(user_id: current_user.id, tag_id: tag.id)
+        UsersTag.create(user_id: user.id, tag_id: tag.id)
       end
     end
     # Never trust parameters from the scary internet, only allow the white list through.

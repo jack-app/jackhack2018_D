@@ -10,28 +10,83 @@
       </ul>
     </div>
   <% end %>
+    <table class="table tables-bordered table-striped">
+      <tr>
+        <th align="right" valign="middle" style="width:20%;background:#74DF00;color: #ffffff;">
+          サークル名
+        </th>
+        <td align="left" valign="middle" colspan="2">
+          <%= form.text_field :name, id: :circle_name, class: "form-control" %>
+        </td>
+        <td align="left" valign="middle">
+          25文字以下で指定
+        </td>
+      </tr>
+      <tr>
+        <th align="right" valign="middle" style="width:20%;background:#74DF00;color: #ffffff;">
+          インカレサークル
+        </th>
+        <td align="left" valign="middle" colspan="2">
+          <label><%= form.check_box :intercollege, id: :circle_intercollege %>このサークルはインカレです。</label>
+        </td>
+        <td align="left" valign="middle">
+          他大学生アカウントからの連絡を許可します
+        </td>
+      </tr>
+      <tr>
+        <th align="right" valign="middle" style="width:20%;background:#74DF00;color: #ffffff;">
+          年会費
+        </th>
+        <td align="left" valign="middle" colspan="2">
+          <%= form.number_field :cost, id: :circle_cost, class: "form-control", style: "display:inline;width:80%" %>円
+        </td>
+        <td align="left" valign="middle">
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :circle_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :profile %>
-    <%= form.text_area :profile, id: :circle_profile %>
-  </div>
-
-  <div class="field">
-    <%= form.label :intercollege %>
-    <%= form.check_box :intercollege, id: :circle_intercollege %>
-  </div>
-
-  <div class="field">
-    <%= form.label :cost %>
-    <%= form.number_field :cost, id: :circle_cost %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+        </td>
+      </tr>
+      <tr>
+        <th align="right" valign="middle" style="width:20%;background:#74DF00;color: #ffffff;">
+          タグ付け
+        </th>
+        <td align="left" valign="middle" colspan="2">
+          <ul id="feat-tags" class="form-control"></ul>
+        </td>
+        <td align="left" valign="middle">
+          最大20コまで
+        </td>
+      </tr>
+      <tr>
+        <th align="right" valign="middle" style="width:20%;background:#74DF00;color: #ffffff;">
+          PR
+        </th>
+        <td align="left" valign="middle" colspan="3">
+          <%= form.text_area :profile, id: :circle_profile, class: "form-control", rows: 20 %><br>
+          このPRも検索内容に使用されます。できるだけ詳細に記入ください。<br>
+          ※他者の誹謗中傷や個人情報の開示など法に抵触する文章の記入はおやめください。
+        </td>
+      </tr>
+    </table>
+    <br></br>
+    <div style="text-align:center;">
+      <%= form.submit "OK", class:"btn btn-primary" %>
+    </div>
 <% end %>
+
+<script type="text/javascript">
+    $(document).on('turbolinks:load', function(){
+        all_available_tags = [];
+        if(gon.available_tags) all_available_tags = gon.available_tags;
+        $('#feat-tags').tagit(
+            {
+                singleField: true,
+                fieldName: 'circle[tag_list]',
+                availableTags: all_available_tags
+            }
+        );
+        if(gon.tag_list){
+            for(var i=0;i<gon.tag_list.length;i++){
+                $('#feat-tags').tagit('createTag', gon.tag_list[i]["name"]);
+            }
+        }
+    });
+</script>

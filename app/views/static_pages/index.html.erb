@@ -3,7 +3,7 @@
 <% if logged_in? %>
     Hello <%= current_user.display_name %>! Go to <%= link_to 'My Page', account_path %><br>
     <%= link_to 'Register new Circle', new_circle_path %>
-
+    <%= circle_suggest %>
 <% else %>
     <%= link_to 'Log in', login_path %>
     <%= link_to 'Sign up', signup_path %>

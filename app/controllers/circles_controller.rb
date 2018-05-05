@@ -15,10 +15,13 @@ class CirclesController < ApplicationController
   # GET /circles/new
   def new
     @circle = Circle.new
+    set_available_tags_to_gon
   end
 
   # GET /circles/1/edit
   def edit
+    gon.tag_list = @circle.tags
+    set_available_tags_to_gon
   end
 
   # POST /circles
@@ -27,6 +30,7 @@ class CirclesController < ApplicationController
     @circle = Circle.new(circle_params)
     if @circle.save
       @user_circle = UsersCircle.new(user_id: current_user.id, circle_id: @circle.id)
+      set_tags @circle
       if @user_circle.save
         redirect_to @circle, notice: 'Circle was successfully created.'
       else
@@ -41,6 +45,7 @@ class CirclesController < ApplicationController
   # PATCH/PUT /circles/1.json
   def update
     if @circle.update(circle_params)
+      set_tags @circle
       redirect_to @circle, notice: 'Circle was successfully updated.'
     else
       render :edit
@@ -72,7 +77,14 @@ class CirclesController < ApplicationController
     def set_circle
       @circle = Circle.find(params[:id])
     end
-
+    def set_tags(circle)
+      circle.circles_tags.destroy_all
+      params[:circle][:tag_list].split(",").each do |name|
+        tag = Tag.find_by(name: name)
+        tag = Tag.create(name: name) unless tag
+        CirclesTag.create(circle_id: circle.id, tag_id: tag.id)
+      end
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def circle_params
       params.require(:circle).permit(:name, :profile, :intercollege, :cost)

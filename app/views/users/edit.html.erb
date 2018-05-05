@@ -3,6 +3,8 @@
   <hr color="49b77c">
   <%= render 'form', user: current_user %>
 
-  <%= link_to 'Show', current_user %> |
-  <%= link_to 'Back', account_path %>
+  <p>
+    <%= link_to 'ログアウト', logout_path, method: :delete, class:"btn btn-danger", style:"color:#ffffff" %>
+  </p>
+
 </div>
