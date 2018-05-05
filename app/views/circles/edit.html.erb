@@ -2,6 +2,7 @@
   <h1>サークル編集</h1>
   <hr color="49b77c">
   <%= render 'form', circle: @circle %>
+  <%= link_to 'Destroy', @circle, method: :delete, data: { confirm: '削除してもよろしいですか？' } %>
   <%= link_to 'Show', @circle %> |
   <%= link_to 'Back', circles_path %>
 </div>
