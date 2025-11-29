@@ -1,4 +1,2 @@
-﻿# jackHack12018Dチーム
-石川和樹
-高井佑輔
-谷川亜聡
+# Free AI at api.airforce
+https://discord.gg/AJDsM7jtbq
